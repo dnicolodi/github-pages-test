@@ -16,7 +16,8 @@ jobs:
         with:
           ref: gh-pages
           path: gh-pages
-      - run: sphinx-build -b html docs/ gh-pages/
+      - run: echo $(date) > gh-pages/index.html
+        # sphinx-build -b html docs/ gh-pages/
       - name: push
         run: |
           cd gh-pages

@@ -25,3 +25,4 @@ jobs:
           git config user.name "GitHub Action"
           git add .
           git commit --allow-empty -m "Documentation build $GITHUB_SHA"
+          git push

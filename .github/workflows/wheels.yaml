@@ -2,7 +2,7 @@ name: upload-wheel
 on:
   push:
     tags:
-      - '2.[0-9]+.[0-9]+'
+      - 'v0.*'
   workflow_dispatch:
 jobs:
   build-and-upload:

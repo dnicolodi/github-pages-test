@@ -14,14 +14,12 @@ jobs:
     strategy:
       fail-fast: false
     env:
-      # Only one of the variables is set.
-      TAG: ${{ github.event.push.tag }} ${{ github.event.inputs.tag }}
+      TAG: ${{ github.event.push.tag || github.event.inputs.tag }}
     steps:
-      - run: echo "$TAG"
-      - run: [[ "$TAG" =~ '^v[0-9]+.[0-9]+.[0-9]+' ]]
       - uses: actions/checkout@v2
         with:
           # Check out the newly oushed tag or the tag specified in the
-          # workflow dispatch. This works because
-          ref:
+          # workflow dispatch. This works because only one variable is
+          # set depending on how the workflow is triggered.
+          ref: ${{ env.TAG }}
       - run: git describe --tags

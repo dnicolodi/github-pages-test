@@ -18,5 +18,5 @@ jobs:
       - run: echo ${{ github.event.inputs.tag }}
       - uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.push.tag }} ${{ inputs.tag }}
+          ref: ${{ github.event.push.tag }} ${{ github.event.inputs.tag }}
       - run: git describe --tags

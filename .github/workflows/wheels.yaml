@@ -18,7 +18,7 @@ jobs:
       TAG: ${{ github.event.push.tag }} ${{ github.event.inputs.tag }}
     steps:
       - run: echo "$TAG"
-      - run: test "$TAG" =~ '^v[0-9]+.[0-9]+.[0-9]+'
+      - run: [[ "$TAG" =~ '^v[0-9]+.[0-9]+.[0-9]+' ]]
       - uses: actions/checkout@v2
         with:
           # Check out the newly oushed tag or the tag specified in the

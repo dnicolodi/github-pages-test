@@ -13,10 +13,15 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
+    env:
+      # Only one of the variables is set.
+      TAG: ${{ github.event.push.tag }} ${{ github.event.inputs.tag }}
     steps:
-      - run: echo ${{ github.event.push.tag }}
-      - run: echo ${{ github.event.inputs.tag }}
+      - run: echo "$TAG"
+      - run: test "$TAG" =~ '^v[0-9]+.[0-9]+.[0-9]+'
       - uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.push.tag }} ${{ github.event.inputs.tag }}
+          # Check out the newly oushed tag or the tag specified in the
+          # workflow dispatch. This works because
+          ref:
       - run: git describe --tags

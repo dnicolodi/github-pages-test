@@ -14,8 +14,8 @@ jobs:
     strategy:
       fail-fast: false
     steps:
-      - run: echo 'github.event.push.tag: ' ${{ github.event.push.tag }}
-      - run: echo 'inputs.tag: ' ${{ inputs.tag }}
+      - run: echo ${{ github.event.push.tag }}
+      - run: echo ${{ inputs.tag }}
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.push.tag }} ${{ inputs.tag }}

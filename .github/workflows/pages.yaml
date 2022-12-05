@@ -12,6 +12,8 @@ jobs:
       - uses: actions/checkout@v2
       - run: mkdir -p build/html/
       - run: echo $(date) > build/html/index.html
+      - uses: actions/upload-pages-artifact@v1
+        path: build/html
   deploy:
     needs: build
     permissions:
